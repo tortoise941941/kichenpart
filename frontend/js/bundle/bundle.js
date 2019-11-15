@@ -5,8 +5,8 @@ const joi = require('@hapi/joi')
 const info = require('sweetalert')
 
 $(document).ready(function(){
-
-     $('form').bind('submit', function(e){
+    
+    $('form').bind('submit', function(e){
        
         const formOne = {
 
@@ -28,7 +28,7 @@ $(document).ready(function(){
 
         if(error){
 
-            info('error', `make sure you fill all the gap`, 'error' )
+            info('error', `make sure you fill all the gap with corrent value`, 'error' )
             e.preventDefault()
         }
         else{  }

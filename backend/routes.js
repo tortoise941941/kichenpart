@@ -2,6 +2,10 @@ const joi = require('@hapi/joi')
 const assert = require('chai').assert
 const route = require('express').Router();
 
+// customer module
+
+const knex = require('../backend/db/knex');
+
 // middleware function
 
 var middleOne = function(req, res, next){
@@ -29,7 +33,7 @@ var middleOne = function(req, res, next){
     if(error){
 
         res.render('home', {
-            error_message: 'make sure you fill all the gap'
+            error_message: 'make sure you fill all the gap with corrent value'
         })
     }
     else{
@@ -37,6 +41,7 @@ var middleOne = function(req, res, next){
     }
 }
 
+ /**    get method     */
 
 //  home route
 route.get('/home', function(req, res){
@@ -51,18 +56,49 @@ route.get('/login', function(req, res){
     res.render('login', { })
 })
 
-// form data
-route.post('/push' , middleOne, function(req, res, next){
-
-    res.redirect('/welcome')
-})
-
 // welcome route
 route.get('/welcome', function(req, res){
-    res.render('welcome', { })
+    
+    res.render('/welcome')         
 })
 
 
+ /**    post method     */
+
+// regitrations route
+route.post('/register' , middleOne, function(req, res, next){
+
+    // not recomended here ( del() ) but is for test
+    knex('registrations').del().then(function(){
+
+        knex('registrations').insert({
+
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password
+    
+        }).then(function(){
+    
+            res.redirect('/login')         
+        })
+    })
+})
+
+// 
+route.post('/welcome', function(req, res){
+
+    knex('registrations').select('*').then(r => {
+
+        r.forEach(e => {
+
+            if(req.body.username == e.username && req.body.password == e.password){
+
+                res.redirect('/welcome')
+            }
+
+        })
+    })
+})
 
 
 module.exports = route

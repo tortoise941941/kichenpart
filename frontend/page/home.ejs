@@ -39,14 +39,14 @@
     
     <div class="table">
         <div style="display: flex; justify-content: center; padding: 10px"> Registration Page </div>
-          <form method="POST" name="formOne" action="/push">
-                <span style="display: flex; justify-content: center; color: red">  <%= error_message %> </span>
+          <form method="POST" name="formOne" action="/register">
+                <span id="error" style="display: flex; justify-content: center; color: red">  <%= error_message %> </span>
                 <input type="text" name="username" placeholder="username" class="form-control">
                 <input type="text" name="email" placeholder="email" class="form-control">
                 <input type="text" name="password" placeholder="password" class="form-control">
                 <input type="text" name="cpassword" placeholder="confirm password" class="form-control">
 
-                <button id="send" type="submit" name="submit" class="btn btn-primary btn-sm">send</button>
+                <button id="sendOne" type="submit" name="submit" class="btn btn-primary btn-sm">send</button>
           </form>
     </div>
 
