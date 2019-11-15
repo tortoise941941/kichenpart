@@ -8,10 +8,7 @@ var middleOne = function(req, res, next){
 
     const data = {
 
-        firstname : req.body.first,
-        middlename : req.body.second,
-        sirname : req.body.third,
-        age : req.body.age,
+        username : req.body.username,
         email : req.body.email,
         password : req.body.password,
         confirm_password : req.body.cpassword,
@@ -20,10 +17,7 @@ var middleOne = function(req, res, next){
 
     const joiObject = joi.object({
         
-        firstname : joi.string().required(),
-        middlename : joi.string().required(),
-        sirname : joi.string().required(),
-        age : joi.number().integer().required(),
+        username : joi.string().required(),
         email : joi.string().email({minDomainSegments: 2, tlds: { allow: ['com', 'net'] }}),
         password : joi.string().required(),
         confirm_password : joi.ref('password')
@@ -33,11 +27,10 @@ var middleOne = function(req, res, next){
     const {error, value } = joiObject.validate(data)
 
     if(error){
-        res.render('home', {
-            error_message: error 
-        })
 
-        console.log(error)
+        res.render('home', {
+            error_message: 'make sure you fill all the gap'
+        })
     }
     else{
         next()
@@ -52,9 +45,10 @@ route.get('/home', function(req, res){
     })
 })
 
-// welcome route
-route.get('/welcome', function(req, res){
-    res.render('welcome', { })
+// login route
+route.get('/login', function(req, res){
+
+    res.render('login', { })
 })
 
 // form data
@@ -62,6 +56,13 @@ route.post('/push' , middleOne, function(req, res, next){
 
     res.redirect('/welcome')
 })
+
+// welcome route
+route.get('/welcome', function(req, res){
+    res.render('welcome', { })
+})
+
+
 
 
 module.exports = route

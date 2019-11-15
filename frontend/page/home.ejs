@@ -39,18 +39,19 @@
     
     <div class="table">
         <div style="display: flex; justify-content: center; padding: 10px"> Registration Page </div>
-          <form method="POST" action="/push">
+          <form method="POST" name="formOne" action="/push">
                 <span style="display: flex; justify-content: center; color: red">  <%= error_message %> </span>
-                <input type="text" id="first" name="first" placeholder="firstname" class="form-control">
-                <input type="text" id="second" name="second" placeholder="middlename" class="form-control">
-                <input type="text" id="third" name="third" placeholder="sirname" class="form-control">
-                <input type="text" id="age" name="age" placeholder="age" class="form-control">
-                <input type="text" id="email" name="email" placeholder="email" class="form-control">
-                <input type="text" id="password" name="password" placeholder="password" class="form-control">
-                <input type="text" id="cpassword" name="cpassword" placeholder="confirm password" class="form-control">
+                <input type="text" name="username" placeholder="username" class="form-control">
+                <input type="text" name="email" placeholder="email" class="form-control">
+                <input type="text" name="password" placeholder="password" class="form-control">
+                <input type="text" name="cpassword" placeholder="confirm password" class="form-control">
 
                 <button id="send" type="submit" name="submit" class="btn btn-primary btn-sm">send</button>
           </form>
+    </div>
+
+    <div style="width: 80%; height: 150px; margin: 10px auto;">
+        <a href="/login">login</a>
     </div>
 
     <script src="js/bootstrap.min.js"></script>
