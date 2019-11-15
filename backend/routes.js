@@ -59,7 +59,7 @@ route.get('/login', function(req, res){
 // welcome route
 route.get('/welcome', function(req, res){
     
-    res.render('/welcome')         
+    res.render('welcome')         
 })
 
 
